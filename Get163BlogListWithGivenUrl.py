@@ -11,6 +11,10 @@ printtimeoutexcept = 0 #control whether display timeout retry log
 totalnum = 0
 printblognum = 0 #control whether print blog number in iteration loop
 
+#recusively call GetBlog in two direction 
+# -1 left side 
+#  1 right side 
+#  0 only for starting seed page 
 def GetBlogHistory(url, direction):
     try:
         driver.get(url)
