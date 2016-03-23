@@ -5,9 +5,14 @@ from selenium import webdriver
 
 html_parser = HTMLParser.HTMLParser() #global parser
 driver = webdriver.PhantomJS(executable_path='***/Downloads//phantomjs-2.1.1-windows//bin//phantomjs.exe')
+driver.set_page_load_timeout(20)
 
 def GetBlogHistory(url, direction):
-    driver.get(url)
+    try:
+        driver.get(url)
+    except:
+        print "Retry for timeout(20sec) exception, url: " + url
+        GetBlogHistory(url, direction)
     content = driver.page_source
     soup = BeautifulSoup.BeautifulSOAP(content)
     if direction == 0 or direction == -1:
