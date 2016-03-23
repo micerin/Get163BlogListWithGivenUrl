@@ -4,7 +4,7 @@ import HTMLParser
 from selenium import webdriver
 
 html_parser = HTMLParser.HTMLParser() #global parser
-driver = webdriver.PhantomJS(executable_path='C://Users//t-jizh//Downloads//phantomjs-2.1.1-windows//bin//phantomjs.exe')
+driver = webdriver.PhantomJS(executable_path='***/Downloads//phantomjs-2.1.1-windows//bin//phantomjs.exe')
 
 def GetBlogHistory(url, direction):
     driver.get(url)
@@ -23,6 +23,6 @@ def GetBlogHistory(url, direction):
             print rurl + '  ' + html_parser.unescape(dict(rlist.attrs)['a'])
             GetBlogHistory(rurl, 1)
 
-url = 'http://micerin.blog.163.com/blog/static/30695072013723103422516/ '#'http://micerin.blog.163.com/blog/static/3069507201492695521634' #seed page
+url = 'http://micerin.blog.163.com/blog/static/30695072013723103422516/'  #seed page
 GetBlogHistory(url, 0)
 driver.close()
