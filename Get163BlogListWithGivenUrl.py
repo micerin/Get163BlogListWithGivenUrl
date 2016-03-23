@@ -16,6 +16,7 @@ printblognum = 0 #control whether print blog number in iteration loop
 #  1 right side 
 #  0 only for starting seed page 
 def GetBlogHistory(url, direction):
+    global totalnum
     try:
         driver.get(url)
     except:
@@ -30,7 +31,7 @@ def GetBlogHistory(url, direction):
             lurl = dict(llist.contents[0].attrs)['href']
             if printblognum == 1:
                 totalnum +=1
-                print totalnum + ". " + lurl + '  ' + html_parser.unescape(dict(llist.attrs)['a'])
+                print "%d. %s %s"%(totalnum, lurl, html_parser.unescape(dict(llist.attrs)['a']))
             else:
                 print lurl + '  ' + html_parser.unescape(dict(llist.attrs)['a'])
             GetBlogHistory(lurl, -1)
@@ -40,7 +41,7 @@ def GetBlogHistory(url, direction):
             rurl = dict(rlist.contents[0].attrs)['href']
             if printblognum == 1:
                 totalnum +=1
-                print totalnum + ". " + rurl + '  ' + html_parser.unescape(dict(rlist.attrs)['a'])
+                print "%d. %s %s"%(totalnum, rurl, html_parser.unescape(dict(rlist.attrs)['a']))
             else:
                 print rurl + '  ' + html_parser.unescape(dict(rlist.attrs)['a'])
             GetBlogHistory(rurl, 1)
